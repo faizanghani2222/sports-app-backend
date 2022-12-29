@@ -17,13 +17,7 @@ app.use(bodyParser.json())
 app.use("/user",userRouter)
 app.use("/event",eventsRouter)
 
-app.get('/', async (req, res) => {
-   try{
-    res.sendFile(__dirname + '/utils/index.html')
-   }catch(e){
-    res.status(401).send({error:e})
-   }
-})
+
 
 
 dbConnect().then(() => {
