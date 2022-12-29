@@ -3,10 +3,10 @@ const cors=require("cors")
 const bodyParser=require("body-parser")
 require('dotenv').config()
 
-const dbConnect = require('./dbConnect.js')
+const dbConnect = require('./src/dbConnect.js')
 const PORT = process.env.PORT || 8080;
-const userRouter=require("./routes/user/user.router")
-const eventsRouter=require("./routes/events/events.router")
+const userRouter=require("./src/routes/user/user.router")
+const eventsRouter=require("./src/routes/events/events.router")
 const app=express()
 
 
@@ -18,7 +18,11 @@ app.use("/user",userRouter)
 app.use("/event",eventsRouter)
 
 app.get('/', async (req, res) => {
+   try{
     res.sendFile(__dirname + '/utils/index.html')
+   }catch(e){
+    res.status(401).send({error:e})
+   }
 })
 
 
