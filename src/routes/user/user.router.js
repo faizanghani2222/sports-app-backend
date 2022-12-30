@@ -42,4 +42,17 @@ app.post("/login", async(req,res)=>{
     }
 })
 
+
+app.get("/:id", async(req,res)=>{
+    try{
+        const {id}=req.params
+       let user=await User.findOne({_id:id},{password: 0})
+        res.send(user)
+    }catch(e){
+        res.status(401).send({message:"failed",error:e})
+    }
+})
+
+
+
 module.exports=app
