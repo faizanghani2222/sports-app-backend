@@ -18,6 +18,7 @@ app.post("/join",async(req,res)=>{
         if(!orgainzer || !event || userverify.username===username){
             res.status(401).send({message:"error try again"})
         }
+      else{
         const ndata={
             username:user.username,
             message:`${user.username} wants to join ${data.event}`,
@@ -37,6 +38,7 @@ app.post("/join",async(req,res)=>{
         user=await user.save()
 
         res.send({message:"Request send successfully"})
+      }
     }catch(e){
         res.status(401).send({message:"Request Failed try agin",error:e})
     }
