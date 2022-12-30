@@ -24,6 +24,8 @@ app.post("/join",async(req,res)=>{
             message:`${user.username} wants to join ${data.event}`,
             requestid:user.events.length,
             timing:data.timing,
+            name:data.event,
+            id:data.id
         }
         orgainzer.notification.push(ndata)
         orgainzer=await orgainzer.save()
