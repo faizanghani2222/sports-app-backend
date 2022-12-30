@@ -43,10 +43,10 @@ app.post("/login", async(req,res)=>{
 })
 
 
-app.get("/:id", async(req,res)=>{
+app.get("/:username", async(req,res)=>{
     try{
-        const {id}=req.params
-       let user=await User.findOne({_id:id},{password: 0})
+        const {username}=req.params
+       let user=await User.findOne({username},{password: 0})
         res.send(user)
     }catch(e){
         res.status(401).send({message:"failed",error:e})
