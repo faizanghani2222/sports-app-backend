@@ -13,9 +13,10 @@ app.post("/join",async(req,res)=>{
         const userverify=jwt.verify(token,secretkey)
         const username=data.username
         let user=await User.findOne({username:userverify.username})
+        let event=await Event.findOne({_id:data.id})
         let orgainzer=await User.findOne({username})
-        if(!orgainzer){
-            res.status(401).send({message:"user not found"})
+        if(!orgainzer || !event || userverify.username===username){
+            res.status(401).send({message:"error try again"})
         }
         const ndata={
             username:user.username,
