@@ -21,13 +21,14 @@ app.post("/join",async(req,res)=>{
             username:user.username,
             message:`${user.username} wants to join ${data.event}`,
             requestid:user.events.length,
-            timing:data.timing
+            timing:data.timing,
         }
         orgainzer.notification.push(ndata)
         orgainzer=await orgainzer.save()
 
         const edata={
             name:data.event,
+            id:data.id,
             timing:data.eventtiming,
             status:"pending"
         }
