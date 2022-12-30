@@ -58,9 +58,9 @@ app.post("/addplayer",async(req,res)=>{
     try{
         const {token,data}=req.body
         const organizerverify=jwt.verify(token,secretkey)
-        let name=data.name
+        let id=data.id
         let username=data.username
-        let event=await Event.findOne({name})
+        let event=await Event.findOne({_id:id})
         let user=await User.findOne({username})
         if(event.limit<=event.players.length){
             res.status(401).send({message:"No more players allowed in the event"})
