@@ -70,7 +70,7 @@ app.post("/addplayer",async(req,res)=>{
         if(event.limit<=event.players.length){
             res.status(401).send({message:"No more players allowed in the event"})
         }
-        else if(data.timing<event.timing){
+        else if(data.timing>event.timing){
             res.status(401).send({message:"Request Expired"})
         }
         else{
